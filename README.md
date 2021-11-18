@@ -28,9 +28,9 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot1.jpg)
-![](./screenshot2.jpg)
-![](./screenshot3.jpg)
+![](screenshot1.jpg)
+![](screenshot2.jpg)
+![](screenshot3.jpg)
 
 ### Links
 
