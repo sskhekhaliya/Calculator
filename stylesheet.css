@@ -122,6 +122,7 @@ input::placeholder{
   margin-bottom: 20px;
   border-radius: 10px;
   position: relative;
+  overflow: hidden;
 }
 
 .for-hidden{
