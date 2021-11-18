@@ -1,0 +1,198 @@
+:root {
+  --body-background: hsl(222, 26%, 31%);
+  --key-background: hsl(223, 31%, 20%);
+  --result-background: hsl(224, 36%, 15%);
+
+
+  --special-key: hsl(225, 21%, 49%);
+  --special-key-shadow: hsl(224, 28%, 35%);
+
+  --result-key: hsl(6, 63%, 50%);
+  --result-key-shadow: hsl(6, 70%, 34%);
+
+  --normal-key: hsl(30, 25%, 89%);
+  --normal-key-shadow: hsl(28, 16%, 65%);
+
+
+
+  --normal-key-text: hsl(221, 14%, 31%);
+  --special-key-text: #ffffff;
+  --special-text: #ffffff;
+  --result-key-text: #ffffff;
+
+  --placeholder-color: #ffffff50;
+}
+
+body{
+  background-color: var(--body-background);
+  margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Spartan', sans-serif;
+    color: var(--special-text);
+}
+
+h1{
+      margin-top: 0;
+      width: 100%;
+      margin: 0;
+}
+
+p{
+  font-size: 10px;
+  display: inline-block;
+    margin: 0;
+    letter-spacing: 1.5px;
+    padding-bottom: 3px;
+}
+
+input{
+  text-align: right;
+  padding: 0;
+  border: 0;
+  background-color: var(--result-background);
+  color: var(--special-text);
+  font-family: 'Spartan', sans-serif;
+  font-size: 32px;
+}
+
+input:focus{
+  outline: none;
+}
+
+input::placeholder{
+  color: var(--placeholder-color);
+}
+
+.uppr-part{
+  display: flex;
+  margin-bottom: 22px;
+}
+
+.theme{
+  width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+}
+
+.theme-part{
+  padding-left: 15px;
+}
+
+.theme-number {
+  display: flex;
+}
+
+.theme-number p {
+  width: 100%;
+  text-align: center;
+
+}
+
+.switch{
+  width: 55px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--key-background);
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.switch-btn{
+  height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    background-color: var(--result-key);
+    margin: 5px;
+    position: absolute;
+    left: 0px;
+    transition: left 0.5s ease;
+}
+
+.result{
+  padding: 25px;
+  background-color: var(--result-background);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.for-hidden{
+  position: absolute;
+    height: 100%;
+    width: 100px;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(90deg, var(--result-background) 25%, transparent);
+}
+
+.main-container{
+  width: fit-content;
+}
+
+.container{
+  background-color: var(--key-background);
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+  grid-template-areas:
+  'btn7 btn8 btn9 btn10'
+  'btn4 btn5 btn6 btn11'
+  'btn1 btn2 btn3 btn12'
+  'btn13 btn0 btn14 btn15'
+  'btn16 btn16 btn17 btn17';
+  width: fit-content;
+  grid-gap: 25px;
+  padding: 25px;
+    border-radius: 10px;
+}
+.keys{
+  background-color: var(--normal-key);
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  color: var(--normal-key-text);
+  font-family: 'Spartan', sans-serif;
+  font-size: 25px;
+  text-transform: uppercase;
+  box-shadow: 0 3px var(--normal-key-shadow);
+}
+
+.btn7{order: 1; grid-area: btn7;}
+.btn8{order: 2; grid-area: btn8;}
+.btn9{order: 3; grid-area: btn9;}
+.btn4{order: 5; grid-area: btn4;}
+.btn5{order: 6; grid-area: btn5;}
+.btn6{order: 7; grid-area: btn6;}
+.btn1{order: 9; grid-area: btn1;}
+.btn2{order: 10; grid-area: btn2;}
+.btn3{order: 11; grid-area: btn3;}
+.btn0{order: 14; grid-area: btn0;}
+
+.btn10{order: 4; grid-area: btn10; background-color: var(--special-key); color: var(--special-key-text); font-size: 15px; box-shadow: 0 3px var(--special-key-shadow);}
+.btn11{order: 8; grid-area: btn11;}
+.btn12{order: 12; grid-area: btn12;}
+.btn13{order: 13; grid-row: btn13;}
+.btn14{order: 15; grid-row: btn14;}
+.btn15{order: 16; grid-area: btn15;}
+.btn16{order: 17; grid-column: btn16; background-color: var(--special-key); color: var(--special-key-text); font-size: 16px; box-shadow: 0 3px var(--special-key-shadow);}
+.btn17{order: 18; grid-column: btn17; background-color: var(--result-key); color: var(--result-key-text); font-size: 15px; box-shadow: 0 3px var(--result-key-shadow);}
+
+.attribution { font-size: 11px; text-align: center; color: var(--special-text); margin-top: 10px;}
+.attribution a { color: hsl(228, 45%, 44%); }
+
+@media only screen and (max-width: 375px){
+  .keys{
+    padding: 15px 15px;
+  }
+  .main-container{
+    zoom: 85%;
+  }
+}
