@@ -104,7 +104,7 @@ setInterval( () =>{
 //Operator Keys function
 function operatorPressed() {
   var arrrayLastValue = num.at(num.length - 1)
-  if ((arrrayLastValue === "+" || arrrayLastValue === "-") || (arrrayLastValue === "×" || arrrayLastValue === "/")) {
+  if (arrrayLastValue === "-") {
     num.pop(arrrayLastValue);
   }
   num.push(operatorSign);
