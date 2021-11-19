@@ -83,39 +83,48 @@ $(document).keydown(function(e) {
   }
 
   //Result with enter
-  if (e.keyCode === 13){
+  if (e.keyCode === 13) {
     finalResult();
   }
 
 });
 
-$(".result-value").blur( () => {
+$(".result-value").blur(() => {
   $(".result-value").focus();
 });
 
-$(".result-value").blur( () =>{
-rtl();
+$(".result-value").blur(() => {
+  rtl();
 });
 
 //changing width of input
-setInterval( () =>{
+setInterval(() => {
   var containerWidth = $(".container").css("width");
   $("input").css("width", containerWidth);
 }, 1);
 
 //Operator Keys function
 function operatorPressed() {
+  if (num.length === 0){
+    num.push(operatorSign);
+    if (num.at(0)=== "-"){
+      $(".result-value").val(num.join(""));
+    } else {
+      num.pop();
+    }
+  }
   var arrrayLastValue = num.at(num.length - 1);
-if (arrrayLastValue === "-"){
-  num.pop(arrrayLastValue);
+if (num.length > 2){
+  if (arrrayLastValue === "-") {
+    num.pop(arrrayLastValue);
+  }
 }
-
   if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")) {
     num.push(operatorSign);
     arrrayLastValue = num.at(num.length - 1)
-    if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")){
+    if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")) {
       num.pop(arrrayLastValue);
-        num.pop(num.at(num.length - 2));
+      num.pop(num.at(num.length - 2));
     }
   }
 
@@ -125,16 +134,17 @@ if (arrrayLastValue === "-"){
     num.pop(arrrayLastValue);
   }
 
-  if ((num.at(num.length - 2) === "+") || (num.at(num.length - 2) === "×") || (num.at(num.length - 2) === "/")){
-    if (num.at(num.length - 1) !== "-" ){
+  if (num.length > 2){
+  if ((num.at(num.length - 2) === "+") || (num.at(num.length - 2) === "×") || (num.at(num.length - 2) === "/")) {
+    if (num.at(num.length - 1) !== "-") {
       num.pop(num.at(num.length - 2));
       operatorSign = "-";
-        num.push(operatorSign);
+      num.push(operatorSign);
     }
   }
-
+}
   rtl();
-  if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
+    if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
     if (num.at(0) === "-") {
       $(".result-value").val(num.join(""));
     } else {
@@ -157,87 +167,87 @@ function finalResult() {
 
 ///function for making input rhs
 function rtl() {
-setTimeout( () => {
-  $(".result-value").scrollLeft($(".result-value").width());
-}, 0);
+  setTimeout(() => {
+    $(".result-value").scrollLeft($(".result-value").width());
+  }, 0);
 }
 
 
 //************* THEME ***********//
 
-$(".switch").click( ()=> {
-  if ( $('.switch-btn').css("left") === "0px"){
-  $('.switch-btn').css("left", "17px");
-  $(":root").css({
-    "--body-background": "hsl(0, 0%, 90%)",
-    "--key-background": "hsl(0, 5%, 81%)",
-    "--result-background": "hsl(0, 0%, 93%)",
+$(".switch").click(() => {
+  if ($('.switch-btn').css("left") === "0px") {
+    $('.switch-btn').css("left", "17px");
+    $(":root").css({
+      "--body-background": "hsl(0, 0%, 90%)",
+      "--key-background": "hsl(0, 5%, 81%)",
+      "--result-background": "hsl(0, 0%, 93%)",
 
-    "--special-key": "hsl(185, 42%, 37%)",
-    "--special-key-shadow": "hsl(185, 58%, 25%)",
+      "--special-key": "hsl(185, 42%, 37%)",
+      "--special-key-shadow": "hsl(185, 58%, 25%)",
 
-    "--result-key": "hsl(25, 98%, 40%)",
-    "--result-key-shadow": "hsl(25, 99%, 27%)",
+      "--result-key": "hsl(25, 98%, 40%)",
+      "--result-key-shadow": "hsl(25, 99%, 27%)",
 
-    "--normal-key": "hsl(45, 7%, 89%)",
-    "--normal-key-shadow": "hsl(35, 11%, 61%)",
+      "--normal-key": "hsl(45, 7%, 89%)",
+      "--normal-key-shadow": "hsl(35, 11%, 61%)",
 
-    "--normal-key-text": "hsl(60, 10%, 19%)",
-    "--special-key-text": "#ffffff",
-    "--special-text": "hsl(60, 10%, 19%)",
-    "--result-key-text": "#ffffff",
+      "--normal-key-text": "hsl(60, 10%, 19%)",
+      "--special-key-text": "#ffffff",
+      "--special-text": "hsl(60, 10%, 19%)",
+      "--result-key-text": "#ffffff",
 
-    "--placeholder-color": "hsl(60deg 10% 19% / 50%)"
-  });
+      "--placeholder-color": "hsl(60deg 10% 19% / 50%)"
+    });
   }
 
-  if ( $('.switch-btn').css("left") === "17px"){
-  $('.switch-btn').css("left", "35px");
-  $(":root").css({
-    "--body-background": "hsl(268, 75%, 9%)",
-    "--key-background": "hsl(268, 71%, 12%)",
-    "--result-background": "hsl(268, 71%, 12%)",
+  if ($('.switch-btn').css("left") === "17px") {
+    $('.switch-btn').css("left", "35px");
+    $(":root").css({
+      "--body-background": "hsl(268, 75%, 9%)",
+      "--key-background": "hsl(268, 71%, 12%)",
+      "--result-background": "hsl(268, 71%, 12%)",
 
-    "--special-key": "hsl(281, 89%, 26%)",
-    "--special-key-shadow": "hsl(285, 91%, 52%)",
+      "--special-key": "hsl(281, 89%, 26%)",
+      "--special-key-shadow": "hsl(285, 91%, 52%)",
 
-    "--result-key": "hsl(176, 100%, 44%)",
-    "--result-key-shadow": "hsl(177, 92%, 70%)",
+      "--result-key": "hsl(176, 100%, 44%)",
+      "--result-key-shadow": "hsl(177, 92%, 70%)",
 
-    "--normal-key": "hsl(268, 47%, 21%)",
-    "--normal-key-shadow": "hsl(290, 70%, 36%)",
+      "--normal-key": "hsl(268, 47%, 21%)",
+      "--normal-key-shadow": "hsl(290, 70%, 36%)",
 
-    "--normal-key-text": "hsl(52, 100%, 62%)",
-    "--special-key-text": "#ffffff",
-    "--special-text": "hsl(52, 100%, 62%)",
-    "--result-key-text": "hsl(198, 20%, 13%)",
+      "--normal-key-text": "hsl(52, 100%, 62%)",
+      "--special-key-text": "#ffffff",
+      "--special-text": "hsl(52, 100%, 62%)",
+      "--result-key-text": "hsl(198, 20%, 13%)",
 
-    "--placeholder-color": "hsl(52deg 100% 62% / 50%)"
+      "--placeholder-color": "hsl(52deg 100% 62% / 50%)"
 
-  });
+    });
   }
 
-  if ( $('.switch-btn').css("left") === "35px"){
-  $('.switch-btn').css("left", "0px");
-  $(":root").css({
-    "--body-background": "",
-    "--key-background": "",
-    "--result-background": "",
+  if ($('.switch-btn').css("left") === "35px") {
+    $('.switch-btn').css("left", "0px");
+    $(":root").css({
+      "--body-background": "",
+      "--key-background": "",
+      "--result-background": "",
 
-    "--special-key": "",
-    "--special-key-shadow": "",
+      "--special-key": "",
+      "--special-key-shadow": "",
 
-    "--result-key": "",
-    "--result-key-shadow": "",
+      "--result-key": "",
+      "--result-key-shadow": "",
 
-    "--normal-key": "",
-    "--normal-key-shadow": "",
+      "--normal-key": "",
+      "--normal-key-shadow": "",
 
-    "--normal-key-text": "",
-    "--special-key-text": "",
-    "--special-text": "",
-    "--result-key-text": "",
-    "--placeholder-color": ""
-  });
+      "--normal-key-text": "",
+      "--special-key-text": "",
+      "--special-text": "",
+      "--result-key-text": "",
+      "--placeholder-color": ""
+    });
   }
 });
