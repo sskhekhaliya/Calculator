@@ -103,11 +103,26 @@ setInterval( () =>{
 
 //Operator Keys function
 function operatorPressed() {
-  var arrrayLastValue = num.at(num.length - 1)
-  if (arrrayLastValue === "-") {
-    num.pop(arrrayLastValue);
+  var arrrayLastValue = num.at(num.length - 1);
+
+if (arrrayLastValue === "-"){
+  num.pop(arrrayLastValue);
+}
+
+  if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")) {
+    num.push(operatorSign);
+    arrrayLastValue = num.at(num.length - 1);
+    if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")){
+      num.pop(arrrayLastValue);
+        num.pop(num.at(num.length - 2));
+    }
   }
   num.push(operatorSign);
+
+  if (num.at(num.length - 1) === "-" && num.at(num.length - 2) === "-") {
+    num.pop(arrrayLastValue);
+  }
+
   rtl();
   if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
     if (num.at(0) === "-") {
