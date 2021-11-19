@@ -113,8 +113,11 @@ function operatorPressed() {
       num.pop();
     }
   }
+
+
+
   var arrrayLastValue = num.at(num.length - 1);
-if (num.length > 2){
+if (num.length > 1){
   if (arrrayLastValue === "-") {
     num.pop(arrrayLastValue);
   }
@@ -142,6 +145,9 @@ if (num.length > 2){
       num.push(operatorSign);
     }
   }
+}
+if ((num.at(1) === "+" || num.at(1) === "/") || (num.at(1) === "×")){
+  num.pop();
 }
   rtl();
     if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
