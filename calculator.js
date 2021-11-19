@@ -146,8 +146,10 @@ if (num.length > 1){
     }
   }
 }
+if (num.at(0)==="-"){
 if ((num.at(1) === "+" || num.at(1) === "/") || (num.at(1) === "×")){
   num.pop();
+}
 }
   rtl();
     if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
