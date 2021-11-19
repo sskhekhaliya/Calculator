@@ -30,7 +30,9 @@ $(".number-key").click(function() {
 
 //operators
 $(".operator-key").click(function() {
+
   operatorSign = $(this).text();
+
   operatorPressed();
 });
 
@@ -104,23 +106,31 @@ setInterval( () =>{
 //Operator Keys function
 function operatorPressed() {
   var arrrayLastValue = num.at(num.length - 1);
-
 if (arrrayLastValue === "-"){
   num.pop(arrrayLastValue);
 }
 
   if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")) {
     num.push(operatorSign);
-    arrrayLastValue = num.at(num.length - 1);
+    arrrayLastValue = num.at(num.length - 1)
     if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")){
       num.pop(arrrayLastValue);
         num.pop(num.at(num.length - 2));
     }
   }
+
   num.push(operatorSign);
 
   if (num.at(num.length - 1) === "-" && num.at(num.length - 2) === "-") {
     num.pop(arrrayLastValue);
+  }
+
+  if ((num.at(num.length - 2) === "+") || (num.at(num.length - 2) === "×") || (num.at(num.length - 2) === "/")){
+    if (num.at(num.length - 1) !== "-" ){
+      num.pop(num.at(num.length - 2));
+      operatorSign = "-";
+        num.push(operatorSign);
+    }
   }
 
   rtl();
