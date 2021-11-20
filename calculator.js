@@ -1,5 +1,9 @@
 var num = [];
 var operatorSign;
+var dotKey = true;
+var ctrlADetect = false;
+
+
 
 for (i = 0; i < 18; i++) {
   if (i > 9) {
@@ -24,20 +28,33 @@ for (i = 0; i < 18; i++) {
 //entering numbers
 $(".number-key").click(function() {
   num.push($(this).text());
+  if (dotKey === false) {
+    if ($(this).text() === ".") {
+      num.pop();
+    }
+  }
   $(".result-value").val(num.join(""));
+  if ($(this).text() === ".") {
+    dotKey = false;
+  }
   rtl();
 });
 
 //operators
 $(".operator-key").click(function() {
+  if (num.at(num.length - 1) !== ".") {
+    operatorSign = $(this).text();
+    operatorPressed();
+    dotKey = true;
+  }
 
-  operatorSign = $(this).text();
-
-  operatorPressed();
 });
 
 // Delete Button
 $(".btn10").click(function() {
+  if (num.at(num.length - 1) === ".") {
+    dotKey = true;
+  }
   num.pop();
   $(".result-value").val(num.join(""));
 });
@@ -47,6 +64,7 @@ $(".btn16").click(function() {
   $(".result-value").val("");
   num = [];
   operatorSign = undefined;
+  dotKey = true;
 });
 
 //Result
@@ -57,28 +75,58 @@ $(".btn17").click(function() {
 //Keyboard function
 
 $(document).keydown(function(e) {
+  //for Reseting ctrl + A detect
+  if (e.keyCode == 65 && e.ctrlKey) {
+    ctrlADetect = true;
+  }
+
   //Numbers Keys
   if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode === 110 || e.keyCode === 190)) {
     num.push(e.key);
+    if (dotKey === false) {
+      if (e.keyCode === 110) {
+        num.pop();
+      }
+    }
     $(".result-value").val(num.join(""));
+    if (e.keyCode === 110) {
+      dotKey = false;
+    }
     rtl();
   }
 
   // Backspace Key
-  if (e.keyCode === 8) {
-    num.pop();
-    $(".result-value").val(num.join(""));
+  if (ctrlADetect === false) {
+    if (e.keyCode === 8) {
+      if (num.at(num.length - 1) === ".") {
+        dotKey = true;
+      }
+      num.pop();
+      $(".result-value").val(num.join(""));
+    }
+  } else {
+    if (e.keyCode === 8) {
+      $(".result-value").val("");
+      num = [];
+      operatorSign = undefined;
+      dotKey = true;
+      ctrlADetect = false;
+    }
   }
 
   //Operator Keys
   if ((e.keyCode >= 106 && e.keyCode <= 109) || (e.keyCode === 111)) {
     //Multiply Key
-    if (e.keyCode === 106) {
-      operatorSign = e.key.replace("*", "×");
-      operatorPressed();
-    } else {
-      operatorSign = e.key;
-      operatorPressed();
+    if (num.at(num.length - 1) !== ".") {
+      if (e.keyCode === 106) {
+        operatorSign = e.key.replace("*", "×");
+        operatorPressed();
+        dotKey = true;
+      } else {
+        operatorSign = e.key;
+        operatorPressed();
+        dotKey = true;
+      }
     }
   }
 
@@ -105,23 +153,22 @@ setInterval(() => {
 
 //Operator Keys function
 function operatorPressed() {
-  if (num.length === 0){
+
+  if (num.length === 0) {
     num.push(operatorSign);
-    if (num.at(0)=== "-"){
+    if (num.at(0) === "-") {
       $(".result-value").val(num.join(""));
     } else {
       num.pop();
     }
   }
 
-
-
   var arrrayLastValue = num.at(num.length - 1);
-if (num.length > 1){
-  if (arrrayLastValue === "-") {
-    num.pop(arrrayLastValue);
+  if (num.length > 1) {
+    if (arrrayLastValue === "-") {
+      num.pop(arrrayLastValue);
+    }
   }
-}
   if ((arrrayLastValue === "+") || (arrrayLastValue === "×" || arrrayLastValue === "/")) {
     num.push(operatorSign);
     arrrayLastValue = num.at(num.length - 1)
@@ -137,22 +184,22 @@ if (num.length > 1){
     num.pop(arrrayLastValue);
   }
 
-  if (num.length > 2){
-  if ((num.at(num.length - 2) === "+") || (num.at(num.length - 2) === "×") || (num.at(num.length - 2) === "/")) {
-    if (num.at(num.length - 1) !== "-") {
-      num.pop(num.at(num.length - 2));
-      operatorSign = "-";
-      num.push(operatorSign);
+  if (num.length > 2) {
+    if ((num.at(num.length - 2) === "+") || (num.at(num.length - 2) === "×") || (num.at(num.length - 2) === "/")) {
+      if (num.at(num.length - 1) !== "-") {
+        num.pop(num.at(num.length - 2));
+        operatorSign = "-";
+        num.push(operatorSign);
+      }
     }
   }
-}
-if (num.at(0)==="-"){
-if ((num.at(1) === "+" || num.at(1) === "/") || (num.at(1) === "×")){
-  num.pop();
-}
-}
+  if (num.at(0) === "-") {
+    if ((num.at(1) === "+" || num.at(1) === "/") || (num.at(1) === "×")) {
+      num.pop();
+    }
+  }
   rtl();
-    if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
+  if ((num.at(0) === "+" || num.at(0) === "/") || (num.at(0) === "×")) {
     if (num.at(0) === "-") {
       $(".result-value").val(num.join(""));
     } else {
