@@ -3,6 +3,13 @@ var operatorSign;
 var dotKey = true;
 var ctrlADetect = false;
 
+window.onerror = function() {
+    $(".error").css("opacity", "100");
+    setTimeout(function(){
+      $(".error").css({"transition": "none", "opacity": ""});
+    }, 2000);
+}
+
 for (i = 0; i < 18; i++) {
   if (i > 9) {
     $(".container").prepend('<button class="keys btn' + i + '"></button>');
@@ -74,7 +81,6 @@ $(".btn17").click(function() {
 });
 
 //Keyboard function
-
 $(document).keydown(function(e) {
   //for Reseting ctrl + A detect
   if (e.keyCode == 65 && e.ctrlKey) {
@@ -155,6 +161,15 @@ setInterval(() => {
   $("input").css("width", containerWidth);
 }, 1);
 
+//detecting Ctrl+V
+$(document).bind('paste', function() {
+    $(".result-value").attr("readonly", false);
+    setTimeout(()=>{
+      num = $(".result-value").val().split("");
+      $(".result-value").attr("readonly", true);
+    }, 0);
+});
+
 //When input goes overflow
 $(document).ready(function(){
   $(".result-value").scroll(function(){
@@ -229,7 +244,7 @@ function operatorPressed() {
 //result function
 function finalResult() {
   var resultValue = $(".result-value").val().replace("×", "*");
-  var result = eval(resultValue);
+  var result = parseFloat(eval(resultValue).toFixed(15));
   $(".result-value").val(result);
   num = [];
   num.push(result);
