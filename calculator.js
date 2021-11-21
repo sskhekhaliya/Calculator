@@ -3,8 +3,6 @@ var operatorSign;
 var dotKey = true;
 var ctrlADetect = false;
 
-
-
 for (i = 0; i < 18; i++) {
   if (i > 9) {
     $(".container").prepend('<button class="keys btn' + i + '"></button>');
@@ -156,6 +154,18 @@ setInterval(() => {
   var containerWidth = $(".container").css("width");
   $("input").css("width", containerWidth);
 }, 1);
+
+//When input goes overflow
+$(document).ready(function(){
+  $(".result-value").scroll(function(){
+    var scrollValue = $(".result-value").scrollLeft();
+    if (scrollValue > 0){
+    $(".for-hidden").css("display", "block");
+  } else {
+    $(".for-hidden").css("display", "");
+  }
+  });
+});
 
 //Operator Keys function
 function operatorPressed() {
