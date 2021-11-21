@@ -57,6 +57,9 @@ $(".btn10").click(function() {
   }
   num.pop();
   $(".result-value").val(num.join(""));
+  if (num.length === 0){
+    dotKey = true;
+  }
 });
 
 //Reset
@@ -103,6 +106,9 @@ $(document).keydown(function(e) {
       }
       num.pop();
       $(".result-value").val(num.join(""));
+      if (num.length === 0){
+        dotKey = true;
+      }
     }
   } else {
     if (e.keyCode === 8) {
@@ -217,6 +223,9 @@ function finalResult() {
   $(".result-value").val(result);
   num = [];
   num.push(result);
+  if(num.at(0) % 1 !== 0){
+    dotKey = false;
+  }
   rtl();
 }
 
