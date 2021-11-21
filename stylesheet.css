@@ -132,6 +132,7 @@ input::placeholder{
     left: 0;
     top: 0;
     background-image: linear-gradient(90deg, var(--result-background) 25%, transparent);
+    display: none;
 }
 
 .main-container{
@@ -164,6 +165,16 @@ input::placeholder{
   font-size: 25px;
   text-transform: uppercase;
   box-shadow: 0 3px var(--normal-key-shadow);
+}
+
+.error{
+  position: absolute;
+  top: 20px;
+  font-size: small;
+  font-family: monospace;
+  color: red;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .btn7{order: 1; grid-area: btn7;}
