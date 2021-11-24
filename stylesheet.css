@@ -200,7 +200,7 @@ input::placeholder{
 .attribution { font-size: 11px; text-align: center; color: var(--special-text); margin-top: 10px;}
 .attribution a { color: hsl(228, 45%, 44%); }
 
-@media only screen and (max-width: 375px){
+@media only screen and (max-width: 500px){
   .keys{
     padding: 15px 15px;
   }
