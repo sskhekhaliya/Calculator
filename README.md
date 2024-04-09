@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: (https://github.com/sskhekhaliya/Frontend-Mentor--Calculator)
-- Live Site URL: (https://sskhekhaliya.github.io/Frontend-Mentor--Calculator/)
+- Solution URL: (https://github.com/sskhekhaliya/Calculator)
+- Live Site URL: (https://sskhekhaliya.github.io/Calculator/)
 
 ## My process
 
